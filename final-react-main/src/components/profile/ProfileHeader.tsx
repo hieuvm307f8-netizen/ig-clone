@@ -5,14 +5,13 @@ import type { User } from "@/types/user";
 import { Settings, MoreHorizontal, Link as LinkIcon } from "lucide-react";
 import { useDispatch } from "react-redux";
 import type { AppDispatch } from "@/store/store";
+import { API_BASE_URL } from "@/lib/env";
 
 interface ProfileHeaderProps {
   user: User;
   isOwnProfile: boolean;
   onEditProfile?: () => void;
 }
-
-const API_URL = import.meta.env.VITE_BASE_URL;
 
 export default function ProfileHeader({
   user,
@@ -24,7 +23,7 @@ export default function ProfileHeader({
   const getFullImageUrl = (path?: string) => {
     if (!path) return "";
     if (path.startsWith("http")) return path;
-    return `${API_URL}${path}`;
+    return `${API_BASE_URL}${path}`;
   };
 
   const handleFollowToggle = () => {

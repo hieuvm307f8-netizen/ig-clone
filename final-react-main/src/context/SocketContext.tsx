@@ -10,6 +10,7 @@ import { io, Socket } from "socket.io-client";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState, AppDispatch } from "@/store/store";
 import { addNewMessage } from "@/store/slices/chatSlice";
+import { API_BASE_URL } from "@/lib/env";
 
 interface SocketContextType {
   socket: Socket | null;
@@ -27,8 +28,6 @@ const SocketContext = createContext<SocketContextType>({
 
 export const useSocket = () => useContext(SocketContext);
 
-const API_URL = import.meta.env.VITE_BASE_URL;
-
 export const SocketProvider = ({ children }: { children: ReactNode }) => {
   const dispatch = useDispatch<AppDispatch>();
   const { isAuthenticated, accessToken, user } = useSelector(
@@ -41,7 +40,7 @@ export const SocketProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     // Chỉ kết nối khi đã đăng nhập và có token
     if (isAuthenticated && accessToken && user) {
-      const socketInstance = io(`${API_URL}/api`, {
+      const socketInstance = io(`${API_BASE_URL}/api`, {
         auth: { token: accessToken },
         transports: ["websocket", "polling"],
         reconnection: true,

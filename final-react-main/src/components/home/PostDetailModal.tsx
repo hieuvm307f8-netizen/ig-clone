@@ -33,8 +33,7 @@ import {
 import type { Post } from "@/types/post";
 import { formatDistanceToNow } from "date-fns";
 import { cn } from "@/lib/utils";
-
-const API_URL = import.meta.env.VITE_BASE_URL;
+import { API_BASE_URL } from "@/lib/env";
 
 interface PostDetailModalProps {
   isOpen: boolean;
@@ -110,7 +109,7 @@ export default function PostDetailModal({
   const getFullMediaUrl = (path: string) => {
     if (!path) return "";
     if (path.startsWith("http")) return path;
-    return `${API_URL}${path}`;
+    return `${API_BASE_URL}${path}`;
   };
   const fullMediaUrl = getFullMediaUrl(
     post.mediaType === "video" ? post.video || "" : post.image,
