@@ -6,8 +6,7 @@ import { userService } from "@/services/userService";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Loader2, MessageSquarePlus } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
-
-const API_URL = import.meta.env.VITE_BASE_URL;
+import { API_BASE_URL } from "@/lib/env";
 
 export default function ChatSidebar() {
   const dispatch = useDispatch<AppDispatch>();
@@ -49,7 +48,7 @@ export default function ChatSidebar() {
   }, [currentUser]);
 
   const getFullUrl = (path: string) =>
-    path?.startsWith("http") ? path : `${API_URL}${path}`;
+    path?.startsWith("http") ? path : `${API_BASE_URL}${path}`;
 
   const handleUserClick = (targetUserId: string) => {
     if (targetUserId) dispatch(accessChat(targetUserId));

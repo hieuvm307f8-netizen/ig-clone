@@ -5,8 +5,7 @@ import { fetchExplorePosts, clearExplore } from "@/store/slices/postSlice";
 import { Heart, MessageCircle, Play } from "lucide-react";
 import PostDetailModal from "@/components/home/PostDetailModal";
 import type { Post } from "@/types/post";
-
-const API_URL = import.meta.env.VITE_BASE_URL;
+import { API_BASE_URL } from "@/lib/env";
 
 export default function ExplorePage() {
   const dispatch = useDispatch<AppDispatch>();
@@ -28,7 +27,7 @@ export default function ExplorePage() {
   const getFullMediaUrl = (path: string) => {
     if (!path) return "";
     if (path.startsWith("http")) return path;
-    return `${API_URL}${path}`;
+    return `${API_BASE_URL}${path}`;
   };
 
   const handleOpenPost = (post: Post) => {

@@ -1,14 +1,12 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import type { User } from "@/types/user";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "@/lib/env";
 
 interface UserSearchResultProps {
   user: User;
   onCloseSearch?: () => void;
 }
-
-// Lấy URL từ biến môi trường
-const API_URL = import.meta.env.VITE_BASE_URL;
 
 export default function UserSearchResult({
   user,
@@ -19,7 +17,7 @@ export default function UserSearchResult({
   const getFullImageUrl = (path?: string) => {
     if (!path) return "";
     if (path.startsWith("http")) return path;
-    return `${API_URL}${path}`;
+    return `${API_BASE_URL}${path}`;
   };
 
   const handleClick = () => {

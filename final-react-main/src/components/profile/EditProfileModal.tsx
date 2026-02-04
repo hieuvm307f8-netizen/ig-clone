@@ -24,14 +24,13 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Loader2, Lock } from "lucide-react";
 import { toast } from "sonner";
+import { API_BASE_URL } from "@/lib/env";
 
 interface EditProfileModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   currentUser: User;
 }
-
-const API_URL = import.meta.env.VITE_BASE_URL;
 
 export default function EditProfileModal({
   open,
@@ -58,7 +57,7 @@ export default function EditProfileModal({
   const getFullImageUrl = (path?: string) => {
     if (!path) return "";
     if (path.startsWith("http")) return path;
-    return `${API_URL}${path}`;
+    return `${API_BASE_URL}${path}`;
   };
 
   // Reset form khi mở modal

@@ -19,8 +19,7 @@ import {
 } from "@/store/slices/postSlice";
 import { addComment } from "@/store/slices/commentSlice";
 import { cn } from "@/lib/utils";
-
-const API_URL = import.meta.env.VITE_BASE_URL;
+import { API_BASE_URL } from "@/lib/env";
 
 interface PostItemProps {
   postId: string;
@@ -59,7 +58,7 @@ export default function PostItem({
   const getFullMediaUrl = (path: string) => {
     if (!path) return "";
     if (path.startsWith("http")) return path;
-    return `${API_URL}${path}`;
+    return `${API_BASE_URL}${path}`;
   };
 
   const fullMediaUrl = getFullMediaUrl(imageUrl);

@@ -13,8 +13,7 @@ import {
   Info,
   ArrowLeft,
 } from "lucide-react";
-
-const API_URL = import.meta.env.VITE_BASE_URL;
+import { API_BASE_URL } from "@/lib/env";
 
 export default function ChatWindow() {
   const dispatch = useDispatch<AppDispatch>();
@@ -60,7 +59,7 @@ export default function ChatWindow() {
 
   const getFullUrl = (path: string) => {
     if (!path) return "";
-    return path.startsWith("http") ? path : `${API_URL}${path}`;
+    return path.startsWith("http") ? path : `${API_BASE_URL}${path}`;
   };
 
   const handleSend = async () => {

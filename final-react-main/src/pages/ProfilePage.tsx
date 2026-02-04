@@ -19,8 +19,7 @@ import {
 } from "lucide-react";
 import type { Post } from "@/types/post";
 import { Button } from "@/components/ui/button";
-
-const API_URL = import.meta.env.VITE_BASE_URL;
+import { API_BASE_URL } from "@/lib/env";
 
 export default function ProfilePage() {
   const { id } = useParams<{ id: string }>();
@@ -82,7 +81,7 @@ export default function ProfilePage() {
   const getFullMediaUrl = (path: string) => {
     if (!path) return "";
     if (path.startsWith("http")) return path;
-    return `${API_URL}${path}`;
+    return `${API_BASE_URL}${path}`;
   };
 
   const handlePostClick = (post: Post) => {
